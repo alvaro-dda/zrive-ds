@@ -16,7 +16,11 @@ black = "^23.7.0"
 flake8 = "^6.1.0"
 mypy = "^1.5.1"
 pytest = "^7.4.0"
+seaborn = "^0.12.2"
 
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.25.2"
 
 [build-system]
 requires = ["poetry-core"]
