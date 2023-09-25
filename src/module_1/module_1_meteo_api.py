@@ -44,7 +44,7 @@ def transform_data(dataset):
 
     dataset = dataset.dropna(axis=1, how='all')
     dataset['Average'] = dataset.mean(axis=1, skipna=True, numeric_only=True)
-    dataset['Dispersion'] = dataset.var(axis=1, skipna=True, numeric_only=True)
+    dataset['Dispersion'] = dataset.std(axis=1, skipna=True, numeric_only=True)
 
     dataset['time'] = pd.to_datetime(dataset['time'])
     dataset['year'] = dataset['time'].dt.year
@@ -55,15 +55,15 @@ def transform_data(dataset):
 def plot_data(data, yaxis):
 
     yearly_average = data.groupby('year')['Average'].mean().reset_index()
-    yearly_variance = data.groupby('year')['Dispersion'].mean().reset_index()
+    yearly_std = data.groupby('year')['Dispersion'].mean().reset_index()
 
     plt.figure(figsize=(10, 6))
     sns.lineplot(data=yearly_average, x='year', y='Average', marker='o',
                 linestyle='-', label=yaxis)
 
-    plt.fill_between(yearly_variance['year'], 
-                    yearly_average['Average'] - yearly_variance['Dispersion'], 
-                    yearly_average['Average'] + yearly_variance['Dispersion'], 
+    plt.fill_between(yearly_std['year'], 
+                    yearly_average['Average'] - yearly_std['Dispersion'], 
+                    yearly_average['Average'] + yearly_std['Dispersion'], 
                     color='lightblue', alpha=0.5, label='Dispersion')
 
     plt.xlabel('Year')
