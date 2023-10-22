@@ -709,7 +709,7 @@ draw_roc_prc(df_val['outcome'], list_val_probs, labels)
     
 
 
-Clearly both Bagging and Random Forest Classifier's are both overfitting because of the small number of trees used (really slow to train). I'm going to try to fix the parameters and increase the number of trees to see if they improve.
+Clearly both Bagging and Random Forest Classifier's are both underperforming on the validation dataset because of the small number of trees used (really slow to train). I'm going to try to fix the parameters and increase the number of trees to see if they improve.
 
 
 ```python
