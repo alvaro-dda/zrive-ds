@@ -161,3 +161,6 @@ cython_debug/
 poetry.lock
 .gitignore
 .gitignore
+src/module_3/Datasets_Zrive/feature_frame.csv
+src/.DS_Store
+.gitignore
