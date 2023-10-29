@@ -161,3 +161,8 @@ cython_debug/
 poetry.lock
 .gitignore
 .gitignore
+src/module_5/financials_against_return.feather
+.DS_Store
+.gitignore
+.DS_Store
+src/.DS_Store
