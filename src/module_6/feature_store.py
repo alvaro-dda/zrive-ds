@@ -1,8 +1,8 @@
 import pandas as pd
 
-from src.basket_model.utils import features
-from src.basket_model.utils import loaders
-from src.exceptions import UserNotFoundException
+from utils import features
+from utils import loaders
+from exceptions import UserNotFoundException
 
 
 class FeatureStore:
@@ -32,3 +32,6 @@ class FeatureStore:
                 "User not found in feature store"
             ) from exception
         return features
+
+#feature_store = FeatureStore()
+#print(feature_store.feature_store.index[0])

@@ -162,3 +162,11 @@ poetry.lock
 .gitignore
 .gitignore
 src/module_2/Datasets_Zrive/feature_frame.csv
+src/module_6/basket_model/bin/model.joblib
+src/module_6/basket_model/data/abandoned_carts.parquet
+src/module_6/basket_model/data/inventory.parquet
+src/module_6/basket_model/data/orders.parquet
+src/module_6/basket_model/data/regulars.parquet
+src/module_6/basket_model/data/users.parquet
+src/module_6/basket_model/.DS_Store
+.gitignore

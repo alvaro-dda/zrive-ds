@@ -2,13 +2,12 @@ import os
 import joblib
 import numpy as np
 
-from src.exceptions import PredictionException
+from exceptions import PredictionException
 
 
 MODEL = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), "../..", "bin/model.joblib")
+    os.path.join(os.path.dirname(__file__),"bin/model.joblib")
 )
-
 
 class BasketModel:
     def __init__(self):
