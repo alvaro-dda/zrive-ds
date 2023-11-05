@@ -65,11 +65,11 @@ def read_status():
 async def predict_outcome(data: User_id):
     features = loaded_feature_store.get_features(data.user_id)
     prediction = loaded_model.predict(features)
-    return {"prediction": prediction.tolist()}
+    return {"prediction": prediction.tolist()[0]}
 
 #Exception Handler for PredictionException error
 @app.exception_handler(PredictionException)
-async def unicorn_exception_handler(request: Request, exc: PredictionException):
+async def prediction_exception_handler(request: Request, exc: PredictionException):
     return JSONResponse(
         status_code=404,
         content={"message": f"{exc.name}"},
@@ -77,7 +77,7 @@ async def unicorn_exception_handler(request: Request, exc: PredictionException):
 
 #Exception Handler for UserNotFoundException error
 @app.exception_handler(UserNotFoundException)
-async def unicorn_exception_handler(request: Request, exc: UserNotFoundException):
+async def user_not_found_handler(request: Request, exc: UserNotFoundException):
     return JSONResponse(
         status_code=404,
         content={"message": f"{exc.name}"},
