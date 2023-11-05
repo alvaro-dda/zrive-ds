@@ -29,7 +29,7 @@ class FeatureStore:
             features = self.feature_store.loc[user_id]
         except Exception as exception:
             raise UserNotFoundException(
-                "User not found in feature store"
+                f"User Not Found in feature store: {user_id}"
             ) from exception
         return features
 

@@ -1,9 +1,10 @@
 
 class PredictionException(Exception):
-    def __init__(self, message):
-        super().__init__(message)
+    def __init__(self, name: str):
+        self.name = "Error in prediction: "
+
 
 class UserNotFoundException(Exception):
-    def __init__(self, message):
-        super().__init__(message)
+    def __init__(self, name = "User Not Found:"):
+        self.name = name
 
