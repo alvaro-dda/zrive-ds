@@ -170,3 +170,6 @@ src/module_6/basket_model/data/regulars.parquet
 src/module_6/basket_model/data/users.parquet
 src/module_6/basket_model/.DS_Store
 .gitignore
+src/module_6/test2.ipynb
+.gitignore
+src/module_6/utils/test.ipynb

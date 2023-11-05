@@ -12,7 +12,7 @@ from exceptions import PredictionException, UserNotFoundException
 
 #Set logging
 logging.basicConfig(
-    filename="api_log.txt",
+    filename="src/module_6/api_log.txt",
     filemode="a",
     level=logging.DEBUG
 )
@@ -28,6 +28,7 @@ app = FastAPI()
 loaded_model = BasketModel()
 loaded_feature_store = FeatureStore()
 
+#Logging of the model
 @app.middleware("http")
 async def api_logging(request: Request, call_next):
     start_time = time.time()
@@ -48,21 +49,25 @@ async def api_logging(request: Request, call_next):
     return Response(content=response_body, status_code=response.status_code, 
         headers=dict(response.headers), media_type=response.media_type)
 
+#Root
 @app.get("/")
 def read_root():
     return {"message": "API for predicting if a particular user will be interested in one of our products.\
             Returns 1 if we expect the user to be interested in the product and 0 if we don't."}
 
+#Status
 @app.get("/status")
 def read_status():
-    return {"status": 200}
+    return JSONResponse(status_code=200)
 
+#Predict Method
 @app.post("/predict")
 async def predict_outcome(data: User_id):
     features = loaded_feature_store.get_features(data.user_id)
     prediction = loaded_model.predict(features)
     return {"prediction": prediction.tolist()}
 
+#Exception Handler for PredictionException error
 @app.exception_handler(PredictionException)
 async def unicorn_exception_handler(request: Request, exc: PredictionException):
     return JSONResponse(
@@ -70,6 +75,7 @@ async def unicorn_exception_handler(request: Request, exc: PredictionException):
         content={"message": f"{exc.name}"},
     )
 
+#Exception Handler for UserNotFoundException error
 @app.exception_handler(UserNotFoundException)
 async def unicorn_exception_handler(request: Request, exc: UserNotFoundException):
     return JSONResponse(
